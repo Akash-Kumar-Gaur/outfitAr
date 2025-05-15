@@ -1,5 +1,5 @@
 // App.jsx
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { bootstrapCameraKit } from '@snap/camera-kit';
 
 const App = () => {
@@ -13,7 +13,8 @@ const App = () => {
       if (initialized.current) return; // prevent re-initialization
       initialized.current = true;
       const cameraKit = await bootstrapCameraKit({
-        apiToken: '',
+        apiToken:
+          'eyJhbGciOiJIUzI1NiIsImtpZCI6IkNhbnZhc1MyU0hNQUNQcm9kIiwidHlwIjoiSldUIn0.eyJhdWQiOiJjYW52YXMtY2FudmFzYXBpIiwiaXNzIjoiY2FudmFzLXMyc3Rva2VuIiwibmJmIjoxNzQ2ODc5MzY4LCJzdWIiOiI1MzVjN2Q3Yy00NGU4LTQ4ZDQtYmUzNi0zOTk2YWFmMGJkYjR-U1RBR0lOR34xMDY3MDhkMS1kOTNkLTRiMzItYWU5My1kOTgyODU0NWFiOTgifQ.REkANrSIXu6p-NFh4C_A4qIdkNguIhvXwzqhHKmgu_w',
       });
       const liveRenderTarget = document.getElementById('canvas');
       const session = await cameraKit.createSession({ liveRenderTarget });
@@ -24,7 +25,12 @@ const App = () => {
       sessionRef.current = session;
       await session.setSource(mediaStream);
       await session.play();
-      const lens = await camKitRef.current.lensRepository.loadLens("LENS_ID", "LENS_GROUP_ID");
+      // const lens = await camKitRef.current.lensRepository.loadLens("2beeb182-420f-4739-8298-c26dad048ea8", "18e77fd5-8185-4fca-b452-1c9378854b00");
+      const lens = await camKitRef.current.lensRepository.loadLens(
+        '2beeb182-420f-4739-8298-c26dad048ea8',
+        'a5fa8a97-89ef-4488-9910-8d03f0863c91'
+      );
+      console.warn('camKitRef.current', camKitRef.current, lens);
       await sessionRef.current.applyLens(lens);
     };
     init();
@@ -33,7 +39,6 @@ const App = () => {
     <div
       style={{
         textAlign: 'center',
-        padding: '2rem',
         flexDirection: 'column',
         display: 'flex',
         alignItems: 'center',
@@ -43,7 +48,14 @@ const App = () => {
         ref={canvasRef}
         width='640'
         height='480'
-        style={{ border: '1px solid black', width: 640, height: 480 }}
+        style={{
+          border: '1px solid black',
+          width: '100vw',
+          height: '100vh',
+          aspectRatio: 9 / 16,
+          objectFit: 'cover',
+          transform: 'scaleX(-1)',
+        }}
         id='canvas'
       />
     </div>
