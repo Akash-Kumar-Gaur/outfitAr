@@ -1,6 +1,10 @@
 // App.jsx
 import { useEffect, useRef } from 'react';
-import { bootstrapCameraKit } from '@snap/camera-kit';
+import {
+  bootstrapCameraKit,
+  createMediaStreamSource,
+  Transform2D,
+} from '@snap/camera-kit';
 
 const App = () => {
   const canvasRef = useRef(null);
@@ -19,11 +23,22 @@ const App = () => {
       const liveRenderTarget = document.getElementById('canvas');
       const session = await cameraKit.createSession({ liveRenderTarget });
       const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: true,
+        video: {
+          // width: { ideal: window.innerWidth * 2 },
+          // height: { ideal: window.innerHeight * 2 },
+          frameRate: { ideal: 30, max: 60 },
+        },
+        audio: false,
+      });
+      const source = createMediaStreamSource(mediaStream, {
+        cameraType: 'front',
+        fpsLimit: 60,
       });
       camKitRef.current = cameraKit;
       sessionRef.current = session;
-      await session.setSource(mediaStream);
+      await session.setSource(source);
+      await source.setRenderSize(window.innerWidth, window.innerHeight);
+      source.setTransform(Transform2D.MirrorX);
       await session.play();
       // const lens = await camKitRef.current.lensRepository.loadLens("2beeb182-420f-4739-8298-c26dad048ea8", "18e77fd5-8185-4fca-b452-1c9378854b00");
       const lens = await camKitRef.current.lensRepository.loadLens(
@@ -44,20 +59,7 @@ const App = () => {
         alignItems: 'center',
       }}
     >
-      <canvas
-        ref={canvasRef}
-        width='640'
-        height='480'
-        style={{
-          border: '1px solid black',
-          width: '100vw',
-          height: '100vh',
-          aspectRatio: 9 / 16,
-          objectFit: 'cover',
-          transform: 'scaleX(-1)',
-        }}
-        id='canvas'
-      />
+      <canvas ref={canvasRef} id='canvas' />
     </div>
   );
 };
