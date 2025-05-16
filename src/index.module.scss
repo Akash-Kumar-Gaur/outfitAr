@@ -1,0 +1,13 @@
+.appWrapper {
+    background: url('./assests/bg.svg');
+    background-size: cover;
+    height: 100%;
+    .content {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 3.4rem;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
+    }
+}
