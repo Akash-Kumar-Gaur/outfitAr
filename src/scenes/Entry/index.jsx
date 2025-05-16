@@ -6,7 +6,7 @@ import membership from '../../assests/membership.png';
 import bag from '../../assests/bag.png';
 import { pixelsToVH, pixelsToVW } from "../../App";
 
-function Entry() {
+function Entry({ setCurrentState }) {
   return (
     <div className={styles.entryPage}>
       <div className={styles.content} style={{
@@ -41,14 +41,14 @@ function Entry() {
             </div>
           </div>
           <div className={styles.tagline} style={{ fontSize: pixelsToVH(47), marginTop: pixelsToVH(50) }}>
-            Experience fashion like never before with<br />a virtual try-on.
+            Experience fashion like never before with a virtual try-on.
           </div>
         </div>
         <div className={styles.action} style={{
           width: pixelsToVW(590),
           height: 'auto'
         }}>
-          <img src={start} alt="start" />
+          <img src={start} alt="start" onClick={() => setCurrentState(1)}/>
         </div>
 
       </div>
