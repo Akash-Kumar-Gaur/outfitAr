@@ -61,3 +61,12 @@
         }
     }
 }
+
+.sliderContainer {
+    position: absolute;
+    width: 100%;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}

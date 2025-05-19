@@ -1,0 +1,40 @@
+.slider-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.triple-swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.triple-slide {
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 300px !important;
+    height: 450px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.triple-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.triple-slide h3 {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
