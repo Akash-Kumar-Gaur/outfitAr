@@ -1,40 +1,74 @@
 .slider-wrapper {
-    width: 100%;
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .triple-swiper {
-    width: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .triple-slide {
-    background: #000;
-    border-radius: 20px;
-    overflow: hidden;
-    width: 300px !important;
-    height: 450px;
-    position: relative;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
+  /* background: #000; */
+  border-radius: 12px;
+  overflow: hidden;
+  height: 450px;
+  position: relative;
+  /* box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); */
+  transition: transform 0.3s ease;
 }
 
 .triple-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  object-fit: contain;
+  aspect-ratio: 1;
 }
 
 .triple-slide h3 {
-    position: absolute;
-    bottom: 15px;
-    left: 20px;
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  /* text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); */
+}
+
+.triple-slide .slider-card {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(253, 1, 0, 0.4);
+  border-radius: 12px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+}
+
+.slider-card .slider-card-img {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.type-select {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+  /* margin-top: 10px; */
+}
+
+.type-select-card {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
